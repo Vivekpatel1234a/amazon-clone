@@ -1,0 +1,1784 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: rgb(211 203 203 / 90%);
+        }
+
+        header {
+            background-color: #131921;
+            width: 100%;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            padding: 1% 2% 1% 2%;
+            align-items: center;
+            flex-wrap: nowrap;
+            overflow: hidden;
+
+        }
+
+        .mainlogo img {
+            width: 7vw;
+            /* Responsive width */
+            max-width: 105px;
+            /* Prevents from getting too large */
+            min-width: 43px;
+            position: relative;
+            top: 0.5vw;
+        }
+
+        .mainlogo {
+            padding: 0% 1%;
+            cursor: pointer;
+        }
+
+        .maptext:hover {
+            outline: 2px solid white;
+            cursor: pointer;
+        }
+
+        .mainlogo:hover {
+            outline: 2px solid white;
+        }
+
+        .navleft {
+            display: flex;
+            align-items: center;
+            padding-right: 1.55%;
+        }
+
+        .maplogo img {
+            top: 5px;
+            position: relative;
+
+            width: 2.85vw;
+            max-width: 30px;
+            min-width: 10px;
+        }
+
+        .maptext {
+            display: flex;
+            align-items: end;
+            white-space: nowrap;
+            padding: 0.3vw 0.5vw;
+
+
+        }
+
+        .mtext>div:first-child {
+            color: rgb(196, 194, 194);
+            font-weight: 500;
+            font-family: sans-serif;
+        }
+
+        .mtext>div:nth-child(2) {
+            color: white;
+            font-family: sans-serif;
+            font-weight: 700;
+        }
+
+
+        .mtext {
+            color: rgb(255, 255, 255);
+            max-width: 210px;
+            font-size: 1.01vw;
+            min-width: 68px;
+
+        }
+
+        @media (max-width: 450px) {
+            .mtext {
+                font-size: 4px;
+            }
+        }
+
+        @media (min-width:1000px) {
+            .mtext {
+                font-size: 11px;
+            }
+
+            .maplogo img {
+                width: 300px;
+            }
+
+
+        }
+
+        @media (max-width:1000px) {
+            .selection {
+                width: 45px;
+            }
+
+            #opt {
+                width: 45px;
+            }
+
+            .flagtext #lang {
+                font-size: 10px;
+
+                font-family: system-ui;
+            }
+        }
+
+
+        .navmiddle {
+
+            display: flex;
+            border-radius: 8px;
+            border: 3px transparent;
+
+
+
+        }
+
+        .navright {
+            color: white;
+            padding: 0.1% 2%;
+        }
+
+        .searchicon {
+            background-color: rgb(246, 173, 38);
+            height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 3vw;
+            border-top-right-radius: 4px;
+            border-bottom-right-radius: 4px;
+            cursor: pointer;
+        }
+
+
+        .searchicon svg {
+            width: 1.8vw;
+            height: 1.8vw
+        }
+
+        #opt {
+            padding: 0.788vw 0px;
+            border-top-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+            width: 45px;
+            cursor: pointer;
+        }
+
+        .selection {
+            border-right: 2px solid #b4afaf;
+
+
+        }
+
+        input {
+            padding: 0.79vw 0px;
+            width: 40vw;
+            height: 16px;
+            font-size: 13.1px;
+            padding-left: 10px;
+            background-color: transparent;
+        }
+
+        @media (min-width:900px) {
+            input {
+                font-size: 17px;
+            }
+
+        }
+
+        .textar {
+            background-color: white;
+            display: flex;
+            align-items: center;
+        }
+
+        .navmiddle:focus-within {
+
+            outline: 3px solid rgb(255, 157, 0);
+
+            /* optional for glow */
+        }
+
+        @media (max-width:550px) {
+            input {
+                width: 29vw;
+            }
+
+            #opt {
+                font-size: 15px;
+
+            }
+        }
+
+        #opt,
+        input,
+        .searchicon {
+            border: none;
+            outline: none;
+
+        }
+
+        @media (max-width:460px) {
+            input {
+                width: 20vw;
+                font-size: 2.1vw
+            }
+        }
+
+        @media (max-width:380px) {
+            input {
+                width: 14vw;
+                font-size: 1.5vw;
+            }
+
+            #opt {
+                width: 2px;
+
+                padding: 3px;
+            }
+
+            .selection {
+                width: 20px;
+            }
+
+        }
+
+        .navright {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2px 1.5vw;
+            position: relative;
+            column-gap: 1vw;
+        }
+
+        @media (max-width:1318px) {
+            input {
+                width: 38vw;
+            }
+        }
+
+        /* @media (max-width:1240px) {
+            input {
+                width: 35vw;
+            }
+        }  */
+        @media (max-width:1238px) {
+            input {
+                width: 35vw;
+            }
+        }
+
+        @media (max-width:1163px) {
+            input {
+                width: 28vw;
+            }
+
+            .navright {
+                position: relative;
+                gap: 3vw;
+            }
+
+        }
+
+        @media (max-width:886px) {
+            input {
+                width: 23vw;
+            }
+
+            .navright {
+                position: relative;
+                gap: 3vw;
+            }
+
+        }
+
+        @media (max-width:642px) {
+            .navright {
+                position: relative;
+                gap: 1.82vw;
+            }
+            .cart img{
+                width: 2vw;
+            }
+
+
+        }
+
+        @media (max-width:555px) {
+            input {
+                width: 15vw;
+            }
+        }
+
+        .flagtext {
+            display: flex;
+            align-self: end;
+            padding: 9px 1px 5px 2px;
+
+        }
+
+        .flagtext:hover {
+            outline: 2px solid white;
+        }
+
+        .flagtext>span:first-child {
+            padding-right: 1px;
+            cursor: pointer;
+        }
+
+        .flagtext #lang {
+            outline-style: none;
+            border: none;
+            color: white;
+            background-color: transparent;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        @media (max-width:466px) {
+
+            .navmiddle,
+            .flagtext {
+
+                display: none;
+            }
+
+            .sign1 {
+                font-size: 10px;
+            }
+
+        }
+
+        .langs {
+            color: black;
+        }
+
+        .signin {
+            padding: 5px 4px;
+            cursor: pointer;
+        }
+
+        .sign1 {
+            font-size: 0.9vw;
+            color: #cecfd0;
+            font-weight: 600;
+        }
+
+        .sign2 {
+            font-size: 1vw;
+            line-height: 13px;
+            font-weight: 600;
+            font-family: sans-serif;
+        }
+
+        .cart img {
+            width: 2.5vw;
+            padding-left: 0.7vw;
+        }
+
+        .return {
+            padding: 3px 6px 5px 6px;
+            cursor: pointer;
+        }
+
+        .return:hover {
+            outline: 2px solid white;
+        }
+
+        .return1 {
+            font-size: 0.9vw;
+            color: #cecfd0;
+            font-weight: 600;
+        }
+
+        .return2 {
+            font-size: 1vw;
+            line-height: 13px;
+            font-weight: 600;
+            font-family: sans-serif;
+        }
+
+        .cart {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            padding: 3px 4px 4px 2px;
+        }
+
+        .cart:hover {
+            outline: 2px solid white;
+        }
+
+        .signin:hover {
+            outline: 2px solid white;
+        }
+
+        .return:hover {
+            outline: 2px solid white;
+        }
+
+        .cart:hover {
+            outline: 2px solid white;
+        }
+
+        @media (max-width:466px) {
+            .cart>img {
+                width: 5vw;
+            }
+
+            .sign1 {
+                font-size: 1.6vw;
+            }
+
+            .sign2 {
+                font-size: 1.6vw;
+
+            }
+
+            .return1 {
+                font-size: 1.6vw;
+            }
+
+            .return2 {
+                font-size: 1.6vw;
+
+            }
+
+            .navleft img {
+                width: 1vw;
+            }
+
+            .maplogo img {
+                width: 6vw;
+            }
+
+            .mtext {
+                font-size: 1.7vw;
+            }
+          
+
+        }
+
+        .navright {
+            white-space: nowrap;
+            /* Prevent wrapping */
+            flex-wrap: nowrap;
+            /* Prevent inner flex items from wrapping */
+        }
+
+        .navright>div {
+            white-space: nowrap;
+            /* Applies to each item individually */
+            min-width: 0;
+            /* Prevents flex from forcing wrap due to width */
+            overflow: hidden;
+            /* Optional: hide overflow text */
+            text-overflow: ellipsis;
+            /* Optional: show ... on overflow */
+        }
+
+        .nav2 {
+            background-color: #232f3e;
+        }
+
+        .nav2a {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            list-style: none;
+            white-space: nowrap;
+            padding-left: 1vw;
+            overflow: hidden;
+
+
+        }
+
+        .nav2a>li {
+            /* flex-shrink: 1; */
+            padding: 0.8vw;
+            font-size: 15.05px;
+            color: white;
+            overflow: hidden;
+
+        }
+
+        @media(max-width:1420px) {
+            .nav2 li:nth-last-child(1) {
+                display: none;
+            }
+
+        }
+
+        @media(max-width:1340px) {
+            .nav2 li:nth-last-child(2) {
+                display: none;
+            }
+
+        }
+
+        @media(max-width:1177px) {
+            .nav2 li:nth-last-child(3) {
+                display: none;
+            }
+
+        }
+
+        @media(max-width:1069px) {
+            .nav2 li:nth-last-child(4) {
+                display: none;
+            }
+
+        }
+
+        @media(max-width:920px) {
+            .nav2 li:nth-last-child(5) {
+                display: none;
+
+            }
+
+            .nav2a>li {
+                font-size: 1.68vw;
+            }
+        }
+
+        .bg1>img {
+            height: 100%;
+            width: 100%;
+            background-color: aqua;
+
+
+        }
+
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            column-gap: 1vw;
+            align-items: stretch;
+        }
+
+
+
+        .mainbox {
+            display: grid;
+            grid-template-areas:
+                "one one"
+                "two two";
+            width: 98.7%;
+
+            align-items: center;
+            justify-self: center;
+            height: 100%;
+            flex-grow: 1;
+        }
+
+        .mainbox>div {
+
+            width: 100%;
+
+        }
+
+        .mainbox>div>img {
+            margin: 2px;
+            height: 90%;
+            width: 80%;
+            position: relative;
+
+        }
+
+        .divimg>div:nth-child(2) {
+            font-size: 0.73vw;
+            text-align: center;
+
+        }
+
+        .gridding {
+
+            height: 100%;
+            width: 100%;
+            padding: 5% 0% 15% 4%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-color: #fcfcfd;
+
+        }
+
+        .gridding>div:first-child {
+            padding-top: 1%;
+            width: 100%;
+            padding-right: 10%;
+            font-size: 1.39vw;
+            position: relative;
+            bottom: 0vw;
+            font-weight: 600;
+            font-family: "Amazon Ember", Arial, sans-serif;
+        }
+
+        .spansee {
+            position: relative;
+            bottom: -12%;
+            font-size: 1vw;
+            color: #2471bc;
+        }
+
+        .divimg {
+            display: flex;
+            flex-direction: column;
+            height: 90%;
+        }
+
+        .card-section,
+        .mainbox,
+        .divimg {
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        .bg1 {
+            background-image: url('https://images-eu.ssl-images-amazon.com/images/G/31/img23/Softlines_JWL_SH_GW_Assets/2024/BAU_BTF/Nov/Unrec/Shoes/1/30003._CB542120021_.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            width: 100%;
+            padding-top: 24vw;
+            /* Control how tall the background appears */
+            position: relative;
+        }
+
+        .bg1::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            /* adjust based on how much fade you want */
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgb(227 222 222 / 90%) 100%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .cardsection {
+            display: flex;
+
+            justify-content: center;
+            padding: 0vw 0vw 0vw 0vw;
+
+            /* This pulls the cards up over the background image */
+            z-index: 2;
+            position: relative;
+            margin: 0vw 2vw 0vw 2vw;
+
+        }
+
+        @media (max-width: 1000px) {
+            .grid {
+                grid-template-columns: repeat(3, 1fr);
+                /* 3 cards per row */
+            }
+
+            .grid4 {
+                display: none;
+                /* 4th card hidden completely */
+            }
+
+        }
+
+        @media (max-width: 466px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+                /* 3 cards per row */
+            }
+
+            .grid3 {
+                display: none;
+                /* 4th card hidden completely */
+            }
+
+            .cardsection {
+                margin-top: 5vw;
+            }
+
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            /* ya dark, jaise bhi nav ka bg ho */
+        }
+
+        /* Make sure .nav2 is not sticky */
+        .content {
+            display: flex;
+            overflow-x: auto;
+            gap: 10px;
+            padding: 10px;
+            white-space: nowrap;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .parts {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            object-fit: cover;
+        }
+
+        .parts img {
+            padding: 0px 25px 0px 12px;
+            width: 11vw;
+            height: 14vw;
+        }
+
+        /* @media (max-width:1385px) {
+            .content {
+                gap: 3px;
+            }
+        } */
+
+        @media (max-width:1205px) {
+            .content {
+                gap: 25px;
+            }
+        }
+
+        @media (max-width:650px) {
+            .content {
+                gap: 14px;
+            }
+
+        }
+
+        @media (max-width:466px) {
+            .content {
+                gap: 19px;
+            }
+
+            .parts>img {
+                height: 55px;
+                width: 80px;
+
+            }
+
+        }
+
+        /* @media (max-width:650px) {
+            .content{
+                gap: 10px;
+            }
+             */
+
+        /* @media (max-width:1020px) {
+            .content {
+                gap: 15px;
+            }
+        } */
+
+        /* @media (max-width:1000px) {
+            .content {
+                gap: 15px;
+            } */
+
+        /* .parts>img {
+                width: 19vw;
+                height: 19vw;
+            } */
+
+
+        .allcontent {
+            background-color: white;
+            margin: 1vw 2vw 1vw 2vw;
+        }
+
+        .contentheading {
+            display: flex;
+            align-items: center;
+            gap: 1%;
+            padding: 1% 0% 1% 5%;
+
+        }
+
+        .contentheading>div:first-child {
+            font-size: 1.42vw;
+            font-weight: 600;
+            font-family: sans-serif;
+        }
+
+        .contentheading>div:nth-child(2) {
+            color: #2471bc;
+            font-size: 1.08vw;
+        }
+
+        .cardsection2 {
+            margin-top: 0px;
+        }
+
+        .footer {
+            list-style: none;
+        }
+
+        .totop {
+            background-color: #404c5c;
+            text-align: center;
+            padding: 10px 0px;
+            font-weight: 600;
+            font-size: 15px;
+            color: #e3e1e1;
+
+        }
+
+        .listitem {
+            display: flex;
+            background-color: #232f3e;
+            justify-content: center;
+            column-gap: 51px;
+        }
+
+        .listitem>div {
+            padding: 10px 20px;
+        }
+
+        .listitem>div>li {
+            padding: 3px;
+        }
+
+        .icons {
+            display: flex;
+            background-color: #232f3e;
+            justify-content: center;
+            align-items: center;
+            column-gap: 8em;
+            height: 129px;
+        }
+
+        .langicons {
+            display: flex;
+            gap: 11px;
+
+        }
+
+        .english,
+        .hindi {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            height: 29px;
+        }
+
+        .icons img {
+            height: 19px;
+            width: 25px;
+        }
+
+
+        .amazonicon>img {
+            width: 84px;
+            height: 32px;
+            position: relative;
+            top: 9px;
+
+        }
+
+        .langicons>button {
+            width: 113px;
+            background-color: transparent;
+            border-style: none;
+            border: 1px solid #696262;
+            color: #aca9a9;
+            border-radius: 3px;
+
+            /* box-shadow: 1px 1px 1px 1px red; */
+
+        }
+
+        .bottom {
+
+            background-color: #131921;
+            color: white;
+            padding: 27px 0px 37px 0px;
+        }
+
+
+
+
+        .copyrightcontent {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            column-gap: 13px;
+        }
+
+        .maincopyright {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .bottom1,
+        .bottom2 {
+            display: flex;
+            justify-content: center;
+            margin-top: 13px;
+            gap: 80px;
+            font-size: 14px;
+
+        }
+
+        .bottom1>div {
+            width: 133px
+        }
+
+        .bottom2>div {
+            width: 133px;
+        }
+
+        .copyright {
+            padding-top: 23px;
+        }
+
+        .listfont {
+
+            font-size: 15px
+        }
+
+        .bottom li:nth-child(2) {
+            color: #aca9a9
+        }
+
+        .copyright,
+        .bottom h4 {
+            color: #e3dada;
+        }
+
+        .listitem h3 {
+            color: #e3e1e1;
+        }
+
+        .listitem li {
+            color: #aca9a9
+        }
+
+        .line {
+            background-color: #464747;
+            height: 1px;
+
+        }
+
+        .listitem {
+            padding-bottom: 37px;
+        }
+
+        @media (max-width:1000px) {
+            .listitem li {
+                font-size: 1.51vw;
+            }
+
+            .totop {
+                padding: 1vw 0vw 1vw 0vw;
+                font-size: 1.2vw;
+            }
+
+            .listitem {
+                padding-bottom: 3vw;
+                column-gap: 0px;
+            }
+
+            .listitem>div {
+                padding: 3vw 3vw;
+            }
+
+            .listitem>div>li {
+                padding: 0.21vw;
+            }
+
+            .line {
+                background-color: #464747;
+                height: 0.1vw;
+            }
+
+            .icons {
+                display: flex;
+                background-color: #232f3e;
+                justify-content: center;
+                align-items: center;
+                column-gap: 11%;
+                height: 14vw;
+            }
+
+            .amazonicon>img {
+                width: 8vw;
+                height: 3vw;
+                position: relative;
+                top: 1vw;
+            }
+
+            .langicons {
+                display: flex;
+                gap: 2vw;
+            }
+
+            .langicons>button {
+                width: 12vw;
+                background-color: transparent;
+                border-style: none;
+                border: 1px solid #696262;
+                color: #aca9a9;
+                border-radius: 3px;
+                /* box-shadow: 1px 1px 1px 1px red; */
+            }
+
+            .english,
+            .hindi {
+                display: flex;
+                align-items: center;
+                justify-content: space-evenly;
+                height: 3vw;
+            }
+
+            .langeng {
+                font-size: 1.3vw;
+            }
+
+            .langhin {
+                font-size: 1.3vw;
+            }
+
+            .english svg {
+                height: 2.5vw;
+                width: 2.2vw;
+            }
+
+            .hindi img {
+                height: 2.5vw;
+                width: 2.2vw;
+            }
+
+            .english li,
+            .hindi li {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .bottom {
+                background-color: #131921;
+                color: white;
+                padding: 3vw 0vw 4vw 0vw;
+            }
+
+            .bottom1,
+            .bottom2 {
+                display: flex;
+                justify-content: center;
+                margin-top: 3vw;
+                gap: 5vw;
+                font-size: 1.5vw;
+            }
+
+            .bottom1>div {
+                width: 14vw;
+            }
+
+            .bottom2>div {
+                width: 14vw;
+            }
+
+            .copyrightcontent {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                column-gap: 2vw;
+            }
+
+            .copyright {
+                font-size: 1.8vw;
+            }
+        }
+
+        .nav2a li:hover {
+
+
+            cursor: pointer;
+        }
+
+        .divimg img {
+            cursor: pointer;
+        }
+
+        .divimg div {
+            cursor: pointer;
+        }
+
+        .parts img {
+            cursor: pointer;
+        }
+
+        .totop:hover {
+            background-color: #4a5a69;
+        }
+
+        .listfont span {
+            cursor: pointer;
+
+        }
+
+        .listfont span:hover {
+            text-decoration: underline;
+        }
+    .copyrightcontent>h5 ,    .maincopyright>h5{
+            cursor: pointer;
+
+        }
+     .copyrightcontent>h5:hover ,   .maincopyright>h5:hover{
+            text-decoration: underline;
+        }
+        .bottom span{
+            cursor: pointer;
+        }
+        .bottom span:hover{
+            text-decoration: underline;
+          
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="navleft">
+                <div class="mainlogo">
+                    <a href="#"></a>
+                    <img src="https://www.pngplay.com/wp-content/uploads/3/White-Amazon-Logo-PNG-HD-Quality.png" alt="">
+                </div>
+                <div class="maptext">
+                    <div class="maplogo">
+                        <img src="map-logo.png" alt="">
+                    </div>
+                    <div class="mtext">
+                        <div>
+                            Delivered to Prayagraj 201206
+                        </div>
+                        <div>
+                            Update location
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="navmiddle">
+                <div class="selection">
+                    <select name="opt" id="opt">
+                        <option value="all">All</option>
+                        <option value="cosmetics">Cosmetics</option>
+                        <option value="electronics">Electronics</option>
+                        <option value="watches">Watches</option>
+                        <option value="furniture">Furniture</option>
+                    </select>
+                </div>
+                <div class="textar">
+                    <input type="text" placeholder="Search Amazon.in">
+                </div>
+                <div class="searchicon">
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100"
+                        viewBox="0 0 50 50">
+                        <path
+                            d="M 21 3 C 11.621094 3 4 10.621094 4 20 C 4 29.378906 11.621094 37 21 37 C 24.710938 37 28.140625 35.804688 30.9375 33.78125 L 44.09375 46.90625 L 46.90625 44.09375 L 33.90625 31.0625 C 36.460938 28.085938 38 24.222656 38 20 C 38 10.621094 30.378906 3 21 3 Z M 21 5 C 29.296875 5 36 11.703125 36 20 C 36 28.296875 29.296875 35 21 35 C 12.703125 35 6 28.296875 6 20 C 6 11.703125 12.703125 5 21 5 Z">
+                        </path>
+                    </svg>
+                </div>
+            </div>
+            <div class="navright">
+                <div class="flagtext">
+                    <span>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Flag_of_India.svg/1200px-Flag_of_India.svg.png?20240117202436"
+                            width="20" height="20" alt="">
+                    </span>
+                    <span class="options">
+                        <select name="lang" id="lang">
+                            <option value="eng" class="langs">ENG</option>
+                            <option value="hin" class="langs">HIN</option>
+
+                            <option value="ger" class="langs">GER</option>
+                        </select>
+                    </span>
+                </div>
+                <div class="signin">
+                    <div class="sign1">Hello, sign in</div>
+                    <div class="sign2">Account & Lists</div>
+                </div>
+                <div class="return">
+                    <div class="return1">Returns</div>
+                    <div class="return2">& Orders</div>
+                </div>
+                <div class="cart">
+                    <img src="cart-icon.png" alt="">
+                </div>
+            </div>
+        </nav>
+
+    </header>
+    <div class="nav2">
+        <div class="nav2a">
+            <li>All</li>
+            <li>MX Player</li>
+            <li>Sell</li>
+            <li>Bestsellers</li>
+            <li>Mobiles</li>
+            <li>Today's Deals</li>
+            <li>Prime</li>
+            <li>Customer Services</li>
+            <li>Fashion</li>
+            <li>New Releases</li>
+            <li>Amazon Pay</li>
+            <li>Electronics</li>
+            <li>Home & Kitchen</li>
+            <li>Computers</li>
+            <li>Car & Motorbike</li>
+            <li>Books</li>
+        </div>
+    </div>
+
+
+    <div class="bg1">
+        <section class="cardsection">
+            <div class="grid">
+                <div class="grid1 gridding">
+                    <div class="span">Appliances for your home | Up to 55% off</div>
+                    <div class="mainbox">
+                        <div class="divimg">
+                            <img src="https://images-eu.ssl-images-amazon.com/images/G/31/IMG15/Irfan/GATEWAY/MSO/Appliances-QC-PC-186x116--B08RDL6H79._SY116_CB667322346_.jpg"
+                                alt="">
+                            <div>Air conditioners</div>
+                        </div>
+                        <div class="divimg">
+                            <img src="https://images-eu.ssl-images-amazon.com/images/G/31/IMG15/Irfan/GATEWAY/MSO/Appliances-QC-PC-186x116--B08345R1ZW._SY116_CB667322346_.jpg"
+                                alt="">
+                            <div>Refrigerators</div>
+                        </div>
+                        <div class="divimg">
+                            <img src="https://images-eu.ssl-images-amazon.com/images/G/31/IMG15/Irfan/GATEWAY/MSO/Appliances-QC-PC-186x116--B07G5J5FYP._SY116_CB667322346_.jpg"
+                                alt="">
+                            <div>Microwaves</div>
+                        </div>
+                        <div class="divimg">
+                            <img src="https://images-eu.ssl-images-amazon.com/images/G/31/IMG15/Irfan/GATEWAY/MSO/186x116---wm._SY116_CB667322346_.jpg"
+                                alt="">
+                            <div>Washing machines</div>
+                        </div>
+
+                    </div>
+                    <div class="spansee">See more</div>
+                </div>
+                <div class="grid2 gridding">
+                    <div class="span">Revamp your home in style</div>
+                    <div class="mainbox">
+                        <div class="divimg">
+                            <img src="https://images-eu.ssl-images-amazon.com/images/G/31/IMG20/Home/2024/Gateway/BTFGW/PCQC/New/1x/final/186x116_Home_furnishings_2._SY116_CB555624324_.jpg"
+                                alt="">
+                            <div>Cushion covers</div>
+                        </div>
+                        <div class="divimg">
+                            <img src="https://images-eu.ssl-images-amazon.com/images/G/31/IMG20/Home/2024/Gateway/BTFGW/PCQC/New/1x/final/186x116_Home_decor_1._SY116_CB555624324_.jpg"
+                                alt="">
+                            <div>Figurines</div>
+
+                        </div>
+                        <div class="divimg">
+                            <img src="https://images-eu.ssl-images-amazon.com/images/G/31/IMG20/Home/2024/Gateway/BTFGW/PCQC/New/1x/final/186x116_Home_storage_1._SY116_CB555624324_.jpg"
+                                alt="">
+                            <div>Home storage</div>
+
+                        </div>
+                        <div class="divimg">
+                            <img src="https://images-eu.ssl-images-amazon.com/images/G/31/IMG20/Home/2024/Gateway/BTFGW/PCQC/New/1x/final/186x116_Home_lighting_2._SY116_CB555624324_.jpg"
+                                alt="">
+                            <div>Lightning solutions</div>
+                        </div>
+                    </div>
+                    <div class="spansee">Explore all</div>
+                </div>
+                <div class="grid3 gridding">
+                    <div class="span">PlayStation 5 Slim & Accessories</div>
+                    <div class="mainbox">
+                        <div class="divimg">
+                            <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img23/VG/Nanditha/BI/QC-4--1x._SY116_CB793233792_.jpg"
+                                alt="">
+                            <div>PS5 digital edition</div>
+                        </div>
+                        <div class="divimg">
+                            <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img23/VG/Nanditha/BI/QC-1--1x._SY116_CB793233792_.jpg"
+                                alt="">
+                            <div>PS5 disc edition</div>
+
+                        </div>
+                        <div class="divimg">
+                            <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img23/VG/Nanditha/BI/QC-3--1x._SY116_CB793233792_.jpg"
+                                alt="">
+                            <div>PS5 fortnite edition</div>
+                        </div>
+                        <div class="divimg">
+                            <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img23/VG/Nanditha/BI/QC-6--1x._SY116_CB793243872_.jpg"
+                                alt="">
+                            <div>PS5 DualSense edition</div>
+                        </div>
+                    </div>
+                    <div class="spansee">See all deals</div>
+                </div>
+                <div class="grid4 gridding">
+                    <div class="span">Starting ₹129 | Headphones </div>
+                    <div class="mainbox">
+                        <div class="divimg">
+                            <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img21/june/CE/GW/QC/PC/PC_QuadCard_boAt_0.5x._SY116_CB553870684_.jpg"
+                                alt="">
+                            <div>Starting ₹249 | boAt</div>
+                        </div>
+                        <div class="divimg">
+                            <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img21/june/CE/GW/QC/PC/PC_QuadCard_Boult_0.5x._SY116_CB553870684_.jpg"
+                                alt="">
+                            <div>Starting ₹349 | boult</div>
+
+                        </div>
+                        <div class="divimg">
+                            <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img21/june/CE/GW/QC/PC/PC_QuadCard_Noise_0.5x._SY116_CB553870684_.jpg"
+                                alt="">
+                            <div>Starting ₹649 | noise</div>
+                        </div>
+                        <div class="divimg">
+                            <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img21/june/CE/MSO/PD3/PC_QuadCard_Zeb_0.5x_1._SY116_CB570220221_.jpg"
+                                alt="">
+                            <div>Starting ₹149 | Zebronics</div>
+                        </div>
+                    </div>
+                    <div class="spansee">See more</div>
+                </div>
+
+        </section>
+
+    </div>
+    <div class="allcontent">
+        <div class="contentheading">
+            <div>
+                Up to 75% off | Get casual ready from Small Businesses</div>
+            <div>See more</div>
+        </div>
+        <div class="content">
+
+            <div class="parts p1">
+                <img src="https://m.media-amazon.com/images/I/61WFT6Ch-qL._AC_SY200_.jpg" alt="">
+            </div>
+            <div class="parts p2">
+                <img src="https://m.media-amazon.com/images/I/510BG1QXhDL._AC_SY200_.jpg" alt="">
+            </div>
+            <div class="parts p3">
+                <img src="https://m.media-amazon.com/images/I/51vaKJu6iOL._AC_SY200_.jpg" alt="">
+            </div>
+            <div class="parts p4">
+                <img src="https://m.media-amazon.com/images/I/6105IZJUKcL._AC_SY200_.jpg" alt="">
+            </div>
+            <div class="parts p5">
+                <img src="https://m.media-amazon.com/images/I/51nIHi7R08L._AC_SY200_.jpg" alt="">
+            </div>
+            <div class="parts p6">
+                <img src="https://m.media-amazon.com/images/I/61R1R+tsmLL._AC_SY200_.jpg" alt="">
+            </div>
+            <div class="parts p7">
+                <img src="https://m.media-amazon.com/images/I/61SDTiZdvHL._AC_SY200_.jpg" alt="">
+            </div>
+            <div class="parts p8">
+                <img src="https://m.media-amazon.com/images/I/71R1XDJWBJL._AC_SY200_.jpg" alt="">
+            </div>
+            <div class="parts p9">
+                <img src="https://m.media-amazon.com/images/I/51fkuQtreKL._AC_SY200_.jpg" alt="">
+            </div>
+
+            <div class="parts p10">
+                <img src="https://m.media-amazon.com/images/I/517w9uOl3aL._AC_SY200_.jpg" alt="">
+            </div>
+
+            <div class="parts p12">
+                <img src="https://m.media-amazon.com/images/I/61tTj89JyYL._AC_SY200_.jpg" alt="">
+            </div>
+            <div class="parts p13">
+                <img src="https://m.media-amazon.com/images/I/71tuH1a4BzL._AC_SY200_.jpg" alt="">
+            </div>
+            <div class="parts p14">
+                <img src="https://m.media-amazon.com/images/I/71hvf8rYSGL._AC_SY200_.jpg" alt="">
+            </div>
+        </div>
+
+
+    </div>
+    <div class="grid2">
+        <section class="cardsection cardsection2">
+            <div class="grid">
+                <div class="grid1 gridding">
+                    <div class="span">Under ₹499 | Deals on home improvement</div>
+                    <div class="mainbox">
+                        <div class="divimg">
+                            <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img18/HomeImprovement/harsmisc/2025/March/Wipes_low_res_V1._SY116_CB549138744_.jpg"
+                                alt="">
+                            <div>Cleaning Supplies</div>
+                        </div>
+                        <div class="divimg">
+                            <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img18/HomeImprovement/harsmisc/2025/March/Shower_heads_low_res_V1._SY116_CB549138744_.jpg"
+                                alt="">
+                            <div>Bathroom accessories</div>
+                        </div>
+                        <div class="divimg">
+                            <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img18/HomeImprovement/harsmisc/2025/March/Tools_low_res_V1._SY116_CB549138744_.jpg"
+                                alt="">
+                            <div>Home tools</div>
+                        </div>
+                        <div class="divimg">
+                            <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img18/HomeImprovement/harsmisc/2025/March/Wallpapers_low_res_V1._SY116_CB549138744_.jpg"
+                                alt="">
+                            <div>Wallpapers</div>
+                        </div>
+
+                    </div>
+                    <div class="spansee">Explore all</div>
+                </div>
+                <div class="grid2 gridding">
+                    <div class="span">Automotive essentials | Up to 60% off</div>
+                    <div class="mainbox">
+                        <div class="divimg">
+                            <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img17/Auto/2020/GW/PCQC/Glasscare1X._SY116_CB410830553_.jpg"
+                                alt="">
+                            <div>Cleaning accessories</div>
+                        </div>
+                        <div class="divimg">
+                            <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img17/Auto/2020/GW/PCQC/Rim_tyrecare1x._SY116_CB410830552_.jpg"
+                                alt=""> a
+                            <div>Tyre & rim care</div>
+
+                        </div>
+                        <div class="divimg">
+                            <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img17/Auto/2020/GW/PCQC/Vaccum1x._SY116_CB410830552_.jpg"
+                                alt="">
+                            <div>Helmets</div>
+
+                        </div>
+                        <div class="divimg">
+                            <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img17/Auto/2020/GW/PCQC/Vaccum1x._SY116_CB410830552_.jpg"
+                                alt="">
+                            <div>Vacuum cleaner</div>
+                        </div>
+                    </div>
+                    <div class="spansee">See all</div>
+                </div>
+                <div class="grid3 gridding">
+                    <div class="span">Get your desired TV screen size | Starting ₹6,999</div>
+                    <div class="mainbox">
+                        <div class="divimg">
+                            <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img21/Raghu/June2025/MSO_SECONDWEEKJUNE/MSO_Jun3rdWeek/xPC_QC_186x116_1._SY116_CB792574578_.jpg"
+                                alt="">
+                            <div>Budget TVs</div>
+                        </div>
+                        <div class="divimg">
+                            <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img21/Raghu/June2025/MSO_SECONDWEEKJUNE/MSO_Jun3rdWeek/xPC_QC_186x116_2._SY116_CB792574578_.jpg"
+                                alt="">
+                            <div>4k TVs</div>
+
+                        </div>
+                        <div class="divimg">
+                            <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img21/Raghu/June2025/MSO_SECONDWEEKJUNE/MSO_Jun3rdWeek/xPC_QC_186x116_3._SY116_CB792574578_.jpg"
+                                alt="">
+                            <div>Big screens</div>
+                        </div>
+                        <div class="divimg">
+                            <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img21/Raghu/June2025/MSO_SECONDWEEKJUNE/MSO_Jun3rdWeek/xPC_QC_186x116_4._SY116_CB792574578_.jpg"
+                                alt="">
+                            <div>Ultra Premium TVs</div>
+                        </div>
+                    </div>
+                    <div class="spansee">See all deals</div>
+                </div>
+                <div class="grid4 gridding">
+                    <div class="span">Starting ₹199 | Amazon Brands & more </div>
+                    <div class="mainbox">
+                        <div class="divimg">
+                            <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img23/PB/March/Bikram/PC_QC_HOME_SIZE_186_2._SY116_CB567468236_.jpg"
+                                alt="">
+                            <div>Starting ₹199 | Bedsheets</div>
+                        </div>
+                        <div class="divimg">
+                            <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img23/PB/March/Bikram/PC_QC_HOME_SIZE_186_3._SY116_CB567468236_.jpg"
+                                alt="">
+                            <div>Starting ₹199 | Curtains</div>
+
+                        </div>
+                        <div class="divimg">
+                            <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img23/PB/March/Bikram/PC_QC_HOME_SIZE_186_4._SY116_CB567468236_.jpg"
+                                alt="">
+                            <div>Ironing board & more</div>
+                        </div>
+                        <div class="divimg">
+                            <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img23/PB/March/Bikram/PC_QC_HOME_SIZE_186_1._SY116_CB567468236_.jpg"
+                                alt="">
+
+                            <div>Home decor</div>
+                        </div>
+                    </div>
+                    <div class="spansee">See more</div>
+                </div>
+
+        </section>
+    </div>
+    <div class="allcontent">
+        <div class="contentheading">
+            <div>
+                Up to 60% off | Curated kitchen products | Amazon Launchpad</div>
+            <div>See All</div>
+        </div>
+        <div class="content">
+
+            <div class="parts p1">
+                <img src="https://m.media-amazon.com/images/I/71MXSFRW87L._AC_SY200_.jpg" alt="">
+            </div>
+            <div class="parts p2">
+                <img src="https://m.media-amazon.com/images/I/61eZc3-Y8eL._AC_SY200_.jpg" alt="">
+            </div>
+            <div class="parts p3">
+                <img src="https://m.media-amazon.com/images/I/61OS-ba2yvL._AC_SY200_.jpg" alt="">
+            </div>
+            <div class="parts p4">
+                <img src="https://m.media-amazon.com/images/I/51ISKqiNCZL._AC_SY200_.jpg" alt="">
+            </div>
+            <div class="parts p5">
+                <img src="https://m.media-amazon.com/images/I/31VldWsmXEL._AC_SY200_.jpg" alt="">
+            </div>
+            <div class="parts p6">
+                <img src="https://m.media-amazon.com/images/I/71RWtDAMFEL._AC_SY200_.jpg" alt="">
+            </div>
+            <div class="parts p7">
+                <img src="https://m.media-amazon.com/images/I/71GRFpIIGyL._AC_SY200_.jpg" alt="">
+            </div>
+            <div class="parts p8">
+                <img src="https://m.media-amazon.com/images/I/61fu3Uq3IIL._AC_SY200_.jpg" alt="">
+            </div>
+            <div class="parts p9">
+                <img src="https://m.media-amazon.com/images/I/716V1c6X23L._AC_SY200_.jpg" alt="">
+            </div>
+
+            <div class="parts p10">
+                <img src="https://m.media-amazon.com/images/I/61WRblVNIzL._AC_SY200_.jpg" alt="">
+            </div>
+            <div class="parts p11">
+                <img src="https://m.media-amazon.com/images/I/7163tQ1m2zL._AC_SY200_.jpg" alt="">
+            </div>
+            <div class="parts p12">
+                <img src="https://m.media-amazon.com/images/I/51A6LTilPoL._AC_SY200_.jpg" alt="">
+            </div>
+            <div class="parts p13">
+                <img src="https://m.media-amazon.com/images/I/71bULKIrahL._AC_SY200_.jpg" alt="">
+            </div>
+            <div class="parts p14">
+                <img src="https://m.media-amazon.com/images/I/81Fg5dJ-KqL._AC_SY200_.jpg" alt="">
+            </div>
+        </div>
+
+
+    </div>
+    <div class="footer">
+        <div class="totop">Back to top</div>
+        <div class="listitem">
+            <div class="list1">
+                <li>
+                    <h3>Get to Know Us</h3>
+                </li>
+                <li class="listfont"><span>About Amazon</span></li>
+                <li class="listfont"><span>Careers</span></li>
+                <li class="listfont"><span>Press Releases</span></li>
+                <li class="listfont"><span>Amazon Science</span></li>
+            </div>
+            <div class="list2">
+                <li>
+                    <h3>
+                        Connect with Us</h3>
+                </li>
+                <li class="listfont"><span>Facebook</span></li>
+                <li class="listfont"><span>Twitter</span></li>
+                <li class="listfont"><span>Instagram</span></li>
+            </div>
+            <div class="list3">
+                <li>
+                    <h3>Make Money with Us</h3>
+                </li>
+                <li class="listfont"><span>Sell on Amazon</span></li>
+                <li class="listfont"><span>Sell under Amazon Accelerator</span></li>
+                <li class="listfont"><span>Protect and Build Your Brand</span></li>
+                <li class="listfont"><span>Amazon Global Selling</span></li>
+                <li class="listfont"><span>Supply to Amazon</span></li>
+                <li class="listfont"><span>Become an Affiliate</span></li>
+                <li class="listfont"><span>Fulfilment by Amazon</span></li>
+                <li class="listfont"><span>Advertise Your Products</span></li>
+                <li class="listfont"><span>Amazon Pay on Merchants</span></li>
+            </div>
+            <div class="list4">
+                <li>
+                    <h3>Let Us Help You</h3>
+                </li>
+                <li class="listfont"><span>Your Account</span></li>
+                <li class="listfont"><span>Returns Centre</span></li>
+                <li class="listfont"><span>Recalls and Product Safety Alerts</span></li>
+                <li class="listfont"><span>100% Purchase Protection</span></li>
+                <li class="listfont"><span>Amazon App Download</span></li>
+                <li class="listfont"><span>Help</span></li>
+            </div>
+        </div>
+        <div class="line"></div>
+        <div class="icons">
+            <div class="amazonicon">
+                <img src="https://www.pngplay.com/wp-content/uploads/3/White-Amazon-Logo-PNG-HD-Quality.png" alt="">
+            </div>
+            <div class="langicons">
+                <button>
+                    <div class="english">
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24"
+                                fill="none" stroke="white" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10" />
+                                <line x1="2" y1="12" x2="22" y2="12" />
+                                <path d="M12 2a15.3 15.3 0 0 1 0 20" />
+                                <path d="M12 2a15.3 15.3 0 0 0 0 20" />
+                            </svg>
+
+                        </li>
+                        <li class="langeng">English</li>
+                    </div>
+                </button>
+                <button>
+                    <div class="hindi">
+                        <li>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Flag_of_India.svg/1200px-Flag_of_India.svg.png?20240117202436"
+                                alt="">
+                        </li>
+                        <li class="langhin">India</li>
+                    </div>
+                </button>
+            </div>
+        </div>
+        <div class="bottom">
+
+            <div class="bottom1">
+                <div>
+                    <li>
+                        <h4>
+                            AbeBooks
+                        </h4>
+                    </li>
+                    <li>
+                       <span> Books, art & collectibles</span>
+                    </li>
+                </div>
+                <div>
+                    <li>
+                        <h4>
+                            Amazon Web Services
+                        </h4>
+                    </li>
+                    <li>
+                     <span>   Scalable Cloud Computing Services</span>
+                    </li>
+                </div>
+                <div>
+                    <li>
+                        <h4>
+                            Audible
+                        </h4>
+                    </li>
+                    <li>
+                      <span>  Download Audio Books</span>
+                    </li>
+                </div>
+                <div>
+                    <li>
+                        <h4>
+                            IMDb
+                        </h4>
+                    </li>
+
+                    <li>
+                     <span>   Movies, TV & Celebrities</span>
+                    </li>
+
+                </div>
+            </div>
+            <div class="bottom2">
+                <div>
+                    <li>
+                        <h4>
+                            Shopbop
+                        </h4>
+                    </li>
+                    <li>
+                      <span>  Designer Fashion Brands</span>
+                    </li>
+                </div>
+                <div>
+                    <li>
+                        <h4>
+                            Amazon Business
+                        </h4>
+                    </li>
+                    <li>
+                        <span>Everything For Your Business</span>
+                    </li>
+                </div>
+                <div>
+                    <li>
+                        <h4>
+                            Prime Now
+                        </h4>
+                    </li>
+                    <li>
+                      <span>  2-Hour Delivery on Everyday Items</span>
+                    </li>
+                </div>
+                <div>
+                    <li>
+                        <h4>
+                            Amazon Prime Music
+                        </h4>
+                    </li>
+                    <li>
+                     <span>   100 million songs, ad-free over 15 million podcast episodes</span>
+                    </li>
+                </div>
+            </div>
+            <div class="copyright">
+                <div class="copyrightcontent">
+                    <h5>Condition of Use & Sale</h5>
+                    <h5>Privacy Notice</h5>
+                    <h5>Interest-Based Ads</h5>
+                </div>
+                <div class="maincopyright">
+                    <h5>
+                        &copy; 1996-2025, Amazon.com, Inc. or its affiliates
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+</html>
