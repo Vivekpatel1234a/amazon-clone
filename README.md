@@ -54,7 +54,7 @@ Vivek Patel
 Full Stack Developer
 
 📧 Email: patelvpv369@gmail.com
-🔗 GitHub: github.com/vivekpatel1234a
+🔗 **GitHub**: [github.com/vivekpatel1234a](https://github.com/vivekpatel1234a)
 
 
 Skills:
