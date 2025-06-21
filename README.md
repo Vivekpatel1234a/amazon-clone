@@ -22,7 +22,7 @@
 
 ## 🚀 Quick Start
 1. **View Online**:  
-   [Live Demo](https://vivekpatel1234a.github.io/amazon-clone/)
+   [Live Demo](https://amazon-clone-vivek.netlify.app/)
 
 
 📂 Files
