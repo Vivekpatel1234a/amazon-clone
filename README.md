@@ -4,7 +4,7 @@
 [Click to view project screenshot](screenshot.png)
 
 ## 🌐 Live Demo
-[Open Live Website](https://vivekpatel1234a.github.io/amazon-clone/)
+[Open Live Website](https://amazon-clone-vivek.netlify.app/)
 
 ## ✨ Features
 - Pure HTML/CSS - No JavaScript
